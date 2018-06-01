@@ -1,7 +1,7 @@
 # AIncrivelMaquinaDeBolhas
 Projeto de uma máquina com braço robótico para fazer bolhas iradas quando um botão irado é precionado. Macacos me mordam não deixe de fazer esse projeto.
 
-## Quer saber como montar o projeto? Confira agora mesmo a [wiki](https://github.com/BrinoOficial/ControleCapacitivo/wiki)!
+## Quer saber como montar o projeto? Confira agora mesmo a [wiki](https://github.com/BrinoOficial/AIncrivelMaquinaDeBolhas/wiki)!
 
 ## Versão
 Desenvolvido no Ubuntu 16.04 LTS 64Bits
