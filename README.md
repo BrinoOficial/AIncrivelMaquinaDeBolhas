@@ -1,5 +1,5 @@
 # AIncrivelMaquinaDeBolhas
-Projeto de uma máquina com braço robótico para fazer bolhas iradas quando um botão irado é precionado. Macacos me mordam não deixe de fazer esse projeto.
+Projeto de uma máquina com braço robótico para fazer bolhas iradas quando um botão irado é pressionado. Macacos me mordam não deixe de fazer esse projeto.
 
 ## Quer saber como montar o projeto? Confira agora mesmo a [wiki](https://github.com/BrinoOficial/AIncrivelMaquinaDeBolhas/wiki)!
 
