@@ -17,7 +17,7 @@ definir MEDIO 65 // angulo intermediario de altura do braco (posicao de inicio d
 definir SABAO 90 // posicao da base alinhada com a bacia de sabão
 definir POSICAOVENTILADOR 15 // posicao da base alinhada com o ventilador
 definir INICIO 45 // posicao de inicio da base
-definir BOTAO 6 // porta do BOTAO
+definir BOTAO 13 // porta do BOTAO
 definir VENTILADOR 7 // porta do ventilador
 
 Numero estadoBotao; // guarda leitura do botao
@@ -28,8 +28,8 @@ Servo braco; // motor do braco
 Configuracao(){
   Pino.definirModo(BOTAO, Entrada_PULLUP);
   Pino.definirModo(VENTILADOR,Saida);
-  braco.conectar(Digital.5);
-  base.conectar(Digital.3);
+  braco.conectar(Digital.4);
+  base.conectar(Digital.6);
   posicaoInicial();
 }
 
