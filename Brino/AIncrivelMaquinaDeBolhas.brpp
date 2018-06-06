@@ -4,7 +4,7 @@
 @autor: Rafael Mascarenhas Dal Moro
 @coAutores: Gabriel Rodrigues Pacheco
 @resumo: 
-	Projeto de controle de 2 MicroServo Motores que desloca uma haste para coletar solucao saponificada e posiciona-la em frente a um ventilador	e produzir bolhas de sabao. A interface com o usuario se da por um botao de ativacao.	
+	Projeto de controle de 2 MicroServo Motores que desloca uma haste para coletar solucao saponificada e posiciona-la em frente a um ventilador e produzir bolhas de sabao. A interface com o usuario se da por um BOTAO de ativacao.	
 @ultima alteracao: 01/06/2018
 @licenca: Este projeto está sob a licença do MIT - Acesse "https://github.com/BrinoOficial/AIncrivelMaquinaDeBolhas/blob/master/LICENSE.md" para mais detalhes
 */
@@ -15,26 +15,26 @@ definir ALTO 94 // angulo de maior altura do braco
 definir BAIXO 43 // angluo de menor altura do braco
 definir MEDIO 65 // angulo intermediario de altura do braco (posicao de inicio do braco)
 definir SABAO 90 // posicao da base alinhada com a bacia de sabão
-definir VENTILADOR 15 // posicao da base alinhada com o ventilador
+definir POSICAOVENTILADOR 15 // posicao da base alinhada com o ventilador
 definir INICIO 45 // posicao de inicio da base
+definir BOTAO 6 // porta do BOTAO
+definir VENTILADOR 7 // porta do ventilador
 
-Numero Constante botao = 6; // porta do botao
-Numero Constante ventilador = 7; // porta do ventilador
 Numero estadoBotao; // guarda leitura do botao
 
 Servo base; // motor da base
 Servo braco; // motor do braco
 
 Configuracao(){
-  Pino.definirModo(botao,Entrada_PULLUP);
-  Pino.definirModo(ventilador,Saida);
+  Pino.definirModo(BOTAO, Entrada_PULLUP);
+  Pino.definirModo(VENTILADOR,Saida);
   braco.conectar(Digital.5);
   base.conectar(Digital.3);
   posicaoInicial();
 }
 
 Principal(){
-  estadoBotao = Pino.ler(botao);
+  estadoBotao = Pino.ler(BOTAO);
   se(estadoBotao == Desligado){
     irParaSabao();
     pegarSabao();
@@ -75,25 +75,24 @@ SemRetorno pegarSabao(){ // movimenta o braco para mergulhar a haste no sabao
       esperar(120);
    }
 }
-SemRetorno irParaVentilador(){ // desloca a base para o ventilador
- para(Numero i= SABAO;i >= VENTILADOR; i--){ 
+SemRetorno irParaVentilador(){ // desloca a base para o ventilar
+ para(Numero i= SABAO;i >= POSICAOVENTILADOR; i--){ 
       base.escreverAngulo(i);
       esperar(15);
     }
 }
 SemRetorno ventilar(){ // Aciona e desliga o ventilador
-	Pino.ligar(ventilador);
+	Pino.ligar(VENTILADOR);
 	esperar(1500);
-	Pino.desligar(ventilador);
+	Pino.desligar(VENTILADOR);
 	esperar(500);
 }
 
 // funcao abaixo retornaria gradualmente a posicao inicial, porem o operador "para" apresenta erros na compilacao
-/*SemRetorno voltarInicio(){ 	
-	para(Numero i= ALTO, Numero j = VENTILADOR; i>= MEDIO, j<= INICIO; i++,j++){
+SemRetorno voltarInicio(){ 	
+	para(Numero i= ALTO,  j = POSICAOVENTILADOR; i>= MEDIO, j<= INICIO; i++,j++){
 		base.escreverAngulo(j);
 		braco.escreverAngulo(i);
 		esperar(15);
 	}
 }
-*/
