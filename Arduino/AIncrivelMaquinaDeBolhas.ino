@@ -4,7 +4,7 @@
 @autor: Rafael Mascarenhas Dal Moro
 @coAutores: Gabriel Rodrigues Pacheco
 @resumo: 
-	Projeto de controle de 2 MicroServo Motores que desloca uma haste for coletar solucao saponificada && posiciona-la em frente a um VENTILADOR	e produzir bolhas de sabao. A interface com o usuario se da por um BOTAO de ativacao.	
+	Projeto de controle de 2 MicroServo Motores que desloca uma haste for coletar solucao saponificada && posiciona-la em frente a um ventilador e produzir bolhas de sabao. A interface com o usuario se da por um BOTAO de ativacao.	
 @ultima alteracao: 01/06/2018
 @licenca: Este projeto está sob a licença do MIT - Acesse "https://github.com/BrinoOficial/AIncrivelMaquinaDeBolhas/blob/master/LICENSE.md" for mais detalhes
 */
@@ -15,12 +15,12 @@
 #define BAIXO 43 // angluo de menor altura do braco
 #define MEDIO 65 // angulo intermediario de altura do braco (setCursor de inicio do braco)
 #define SABAO 90 // setCursor da base alinhada com o recipiente de sabão
-#define POSICAOVENTILADOR 15 // setCursor da base alinhada com o VENTILADOR
+#define POSICAOVENTILADOR 15 // setCursor da base alinhada com o ventilador
 #define INICIO 45 // setCursor de inicio da base
 #define BOTAO  13 // porta do BOTAO
-#define VENTILADOR  5 // porta do VENTILADOR
+#define VENTILADOR  5 // porta do ventilador
 
-int estadoBotao; // guarda leitura do BOTAO
+int estadoBotao; // guarda leitura do botao
 
 Servo base; // motor da base
 Servo braco; // motor do braco
@@ -75,13 +75,13 @@ void pegarSabao(){ // movimenta o braco para mergulhar a haste no sabao
       delay(120);
    }
 }
-void irParaVentilador(){ // desloca a base para o VENTILADOR
+void irParaVentilador(){ // desloca a base para o ventilador
  for(int i= SABAO;i >= POSICAOVENTILADOR; i--){ 
       base.write(i);
       delay(15);
     }
 }
-void ventilar(){ // Aciona e desliga o VENTILADOR
+void ventilar(){ // Aciona e desliga o ventilador
 digitalWrite(VENTILADOR,HIGH);
 	delay(1500);
 	digitalWrite(VENTILADOR,LOW);
