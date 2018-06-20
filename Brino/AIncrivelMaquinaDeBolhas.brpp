@@ -11,11 +11,11 @@
 
 usar Servo
 
-definir ALTO 94 // angulo de maior altura do braco
-definir BAIXO 43 // angluo de menor altura do braco
-definir MEDIO 65 // angulo intermediario de altura do braco (posicao de inicio do braco)
-definir SABAO 90 // posicao da base alinhada com a bacia de sabão
-definir POSICAOVENTILADOR 15 // posicao da base alinhada com o ventilador
+definir ALTO 114 // angulo de maior altura do braco
+definir BAIXO 70 // angluo de menor altura do braco
+definir MEDIO 95 // angulo intermediario de altura do braco (posicao de inicio do braco)
+definir SABAO 75// posicao da base alinhada com a bacia de sabão
+definir POSICAOVENTILADOR 00 // posicao da base alinhada com o ventilador
 definir INICIO 45 // posicao de inicio da base
 definir BOTAO 13 // porta do BOTAO
 definir VENTILADOR 7 // porta do ventilador
@@ -26,22 +26,26 @@ Servo base; // motor da base
 Servo braco; // motor do braco
 
 Configuracao(){
+ USB.conectar(9600);
   Pino.definirModo(BOTAO, Entrada_PULLUP);
-  Pino.definirModo(VENTILADOR,Saida);
+  Pino.definirModo(7, Saida);
   braco.conectar(Digital.4);
   base.conectar(Digital.6);
   posicaoInicial();
+  pararVentilar();
 }
 
 Principal(){
-  estadoBotao = Pino.ler(BOTAO);
-  se(estadoBotao == Desligado){
-    irParaSabao();
-    pegarSabao();
-    irParaVentilador();
-    ventilar();
-  }
-  posicaoInicial();
+  	estadoBotao = Pino.ler(BOTAO);
+  	se(estadoBotao == Desligado){
+    		irParaSabao();
+    		pegarSabao();
+		ventilar();
+    		irParaVentilador();
+		esperar(5000);
+		pararVentilar();
+    		posicaoInicial();  
+	}  
 }
 
 SemRetorno posicaoInicial(){ // posiciona braco e base na posicao inicial de execucao
@@ -69,9 +73,9 @@ SemRetorno pegarSabao(){ // movimenta o braco para mergulhar a haste no sabao
       esperar(15);
     }
     para(Numero i=0; i<3;i++){ // "sacode" para remover excesso de liquido
-      braco.escreverAngulo(89);
+      braco.escreverAngulo(ALTO-8);
       esperar(120);
-      braco.escreverAngulo(94);
+      braco.escreverAngulo(ALTO);
       esperar(120);
    }
 }
@@ -80,12 +84,16 @@ SemRetorno irParaVentilador(){ // desloca a base para o ventilar
       base.escreverAngulo(i);
       esperar(15);
     }
+     para(Numero i=ALTO; i>=MEDIO; i--){ 
+      braco.escreverAngulo(i);
+      esperar(15);
+    }
 }
 SemRetorno ventilar(){ // Aciona e desliga o ventilador
-	Pino.ligar(VENTILADOR);
-	esperar(1500);
 	Pino.desligar(VENTILADOR);
-	esperar(500);
+}
+SemRetorno pararVentilar(){
+	Pino.ligar(VENTILADOR);
 }
 
 // funcao abaixo retornaria gradualmente a posicao inicial, porem o operador "para" apresenta erros na compilacao
