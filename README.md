@@ -21,3 +21,6 @@ Veja também a lista de [contributors](https://github.com/BrinoOficial/AIncrivel
 ## Licença
 
 Este projeto está sob a licença do MIT - Veja em [LICENSE.md](LICENSE.md) arquivo para mais detalhes
+
+# Encontrou algum erro?
+Caso tenha encontrado algum erro ou tenha alguma sugestão, mande email para: contato@brino.cc
